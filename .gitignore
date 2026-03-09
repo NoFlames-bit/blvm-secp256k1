@@ -1,0 +1,10 @@
+/target/
+scripts/
+benches/
+.cargo/
+
+perf.data
+perf.data.old
+flamegraph.svg
+stacks.folded
+Cargo.toml.orig
