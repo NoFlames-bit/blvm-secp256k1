@@ -908,3 +908,20 @@ pub fn verify_ecdsa_direct(
     }
     Some(ecdsa_sig_verify(&sigr, &sigs, &pk, &msg))
 }
+
+#[cfg(test)]
+mod bip66_strict_der_regression {
+    use super::*;
+
+    /// Strict DER (BIP66) parse: mainnet-era production signature.
+    /// Provenance: P2PKH spend from historic mainnet (height 363_726, tx index 2).
+    #[test]
+    fn strict_der_parses_bip66_epoch_mainnet_vector() {
+        let der_hex = "304502206794ddbfbb9a36d9daecbab5b19ca523d3fa53530a7467475d812b6375204a85\
+            0221009cab7076ce3319ab94a31df5c63b1b827b8d99b70822b0e9625a4aff2433a7d0";
+        let der = hex::decode(der_hex).expect("hex");
+        assert_eq!(der.len(), 71, "DER without sighash byte");
+        let parsed = ecdsa_sig_parse_der(&der);
+        assert!(parsed.is_some(), "strict DER parse failed for known-mainnet sig");
+    }
+}
