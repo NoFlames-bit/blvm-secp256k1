@@ -1,5 +1,10 @@
 # blvm-secp256k1
 
+[![crates.io](https://img.shields.io/crates/v/blvm-secp256k1.svg)](https://crates.io/crates/blvm-secp256k1)
+[![docs.rs](https://docs.rs/blvm-secp256k1/badge.svg)](https://docs.rs/blvm-secp256k1)
+[![CI](https://github.com/BTCDecoded/blvm-secp256k1/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/BTCDecoded/blvm-secp256k1/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
+
 Pure Rust reimplementation of libsecp256k1 with vendored ASM for hot paths. No FFI to C — all logic in Rust. Performance-optimized secp256k1 for Bitcoin and Ethereum.
 
 Precomputed ecmult tables are committed in `src/ecmult_precomputed.rs` (no build-time generation). To regenerate: copy `precomputed_ecmult.c` from upstream libsecp256k1 `src/` into `build/`, then `cargo run --example regenerate_precomputed`.
