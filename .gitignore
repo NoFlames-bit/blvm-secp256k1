@@ -1,4 +1,6 @@
 /target/
+# Library crate: lockfile not committed
+Cargo.lock
 scripts/
 benches/
 .cargo/
